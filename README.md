@@ -1,4 +1,4 @@
-# Plusoft3Sprint - Challenge
+# Plusoft4Sprint - Challenge
 
 
 ## Integrantes
@@ -14,21 +14,21 @@
 - Banco de dados Oracle: Para operações CRUD (Create, Read, Update, Delete).
 - Swagger/OpenAPI: Documentação interativa dos endpoints.
 - Padrão de Criação: Usaremos o JSON para o gerenciador de configurações.
+- Autenticação JWT: Token.
 
 # Arquitetura da API
 
-## Abordagem Monolítica
+## Descrição
 
-A arquitetura adotada para esta API é **monolítica**, onde toda a aplicação é estruturada em um único projeto e executada como uma única unidade. Essa escolha é justificada pela simplicidade do sistema, o que facilita o desenvolvimento e a manutenção, especialmente dado o tamanho atual da aplicação.
+Este repositório contém uma API RESTful construída em ASP.NET Core, que gerencia dados de produtos e oferece uma funcionalidade de previsão baseada em Machine Learning para recomendar o nome de um produto, com base em suas características. A aplicação utiliza o Entity Framework Core para persistência de dados e uma camada de segurança baseada em JWT para autenticação de usuários.
 
-Optou-se por essa abordagem devido a fatores como:
+- Models/: Define as classes de modelo do domínio, como Produto e Cliente.
+- Controllers/: Contém os controladores responsáveis por gerenciar as requisições HTTP.
+- Data/: Contém o contexto do banco de dados (AppDbContext).
+- Data/dados_treinamento.csv: Contém os dados para treinar o modelo de previsão.
+- Services/: Inclui serviços auxiliares, como TokenService para geração de tokens JWT.
+- wwwroot/MLModels/: Armazena o modelo treinado de Machine Learning.
 
-- **Simplicidade**: A estrutura monolítica permite que toda a aplicação seja desenvolvida e gerenciada de forma mais simples.
-- **Facilidade de manutenção**: Ideal para projetos menores, onde é mais fácil gerenciar dependências e controlar a evolução do código.
-- **Desempenho interno**: A comunicação entre componentes é rápida e direta, uma vez que ocorre dentro de um único processo.
-- **Eficiência no gerenciamento de times**: Mais adequado para equipes menores e ciclos de entrega mais curtos.
-
-Esse tipo de arquitetura é especialmente vantajoso nas fases iniciais de um projeto, onde a simplicidade de implementação, depuração e testes são essenciais. Para APIs relativamente pequenas, a ausência da sobrecarga de rede presente em uma arquitetura de microserviços traz ganhos de desempenho na comunicação interna.
 
 ---
 
@@ -36,29 +36,47 @@ Esse tipo de arquitetura é especialmente vantajoso nas fases iniciais de um pro
 
 Optamos pelo uso do padrão JSON (JavaScript Object Notation) no desenvolvimento de APIs devido aos inúmeros benefícios que ele proporciona, tanto em termos técnicos quanto de usabilidade. Um dos principais motivos é sua ampla compatibilidade. JSON é suportado por praticamente todas as linguagens de programação modernas, o que facilita a integração das APIs com diferentes sistemas e plataformas. Isso significa que independentemente do ambiente em que estejam trabalhando, podemos consumir e produzir dados de forma consistente em outras APIs.
 
-Além disso, o JSON se destaca por sua leveza em comparação a outros formatos, como o XML. Sua estrutura mais simples permite que os dados sejam transmitidos mais rapidamente pela rede, o que contribui diretamente para o melhor desempenho das APIs. Esse fator é especialmente importante em cenários onde há limitações de banda, pois o menor volume de dados trafegando reduz a latência e melhora a experiência do usuário final.
+## Funcionalidades
 
-Outro ponto relevante é a flexibilidade oferecida pelo JSON. Por ser um formato adaptável, ele permite que campos e propriedades sejam adicionados ou removidos sem que isso comprometa a compatibilidade com versões anteriores de uma API. Essa característica é fundamental para garantir a evolução contínua dos serviços, permitindo ajustes e melhorias de forma ágil, sem causar interrupções ou falhas na comunicação entre diferentes versões da API. Dessa maneira, o uso de JSON contribui para um desenvolvimento mais eficiente e uma manutenção mais simples das soluções de software.
-
----
-
-## Diferenças entre as arquiteturas
-
-Na arquitetura monolítica, a aplicação é concebida e executada como uma única e coesa unidade de software. Todo o código-fonte, desde os componentes de front-end até o back-end, incluindo a lógica de negócios e a integração com o banco de dados, está unificado em um único projeto ou processo. A implementação de uma API baseada nessa estrutura adota uma abordagem centralizada e direta, onde todas as funcionalidades estão interconectadas e funcionam dentro de um mesmo ambiente de execução, proporcionando uma comunicação mais eficiente entre os diferentes módulos da aplicação.
-
-A Camada de Apresentação, representada pelos Controllers, é a responsável por expor os endpoints da API para que os clientes ou consumidores possam interagir com os recursos oferecidos. Nessa camada, as requisições HTTP são recebidas, processadas e encaminhadas para as camadas responsáveis por tratar a lógica de negócios e manipulação dos dados.
-
-Já a Camada de Domínio, composta pelos Models, define as entidades que a API manipula. Essas entidades representam os objetos de domínio, ou seja, os recursos específicos da aplicação, como produtos, usuários ou qualquer outro elemento relevante para o funcionamento da API.
-
-Os endpoints responsáveis pelas operações CRUD (Create, Read, Update e Delete) serão implementados seguindo essa arquitetura monolítica. Isso implica que todas as operações relativas aos recursos da API, como a criação de novos registros, leitura, atualização e remoção de dados, estarão centralizadas no mesmo núcleo da aplicação, permitindo uma gestão unificada e simplificada dos dados e funcionalidades.
+ 1. CRUDs de Produtos,Clientes, Endereço e Email: Permite criar, ler, atualizar e deletar.
+ 2. Autenticação JWT: Protege a API com autenticação JWT, garantindo acesso apenas a usuários autorizados.
+ 3. Previsão de Produto com IA Generativa: Implementa uma API para prever o nome de um produto com base nas características inseridas, utilizando Machine Learning.
+ 4. Treinamento de Modelo ML: Treina um modelo de IA para prever o nome do produto com base em dados históricos.
+ 5. Dados: Csv de treinamento contendo + de 7 mil linhas de dados (80%) e csv de Testes (20%) para melhor adequação de aprendizagem de máquina.
 
 ---
 
-## Testes Unitários e Integração
-Serão implementados testes para garantir a funcionalidade da API:
+## Funcionalidade de IA Generativa
 
-- Testes Unitários: Validação das funcionalidades da API, especialmente a lógica dos endpoints CRUD.
-- Testes de Integração: Verificação da comunicação com o banco de dados Oracle.
+#Detalhes do Modelo de IA
+
+O projeto utiliza o Microsoft ML.NET para treinar um modelo de classificação multi-classe, que prevê o nome do produto para recomendação de uso com base em características, como categoria, preço, sexo do cliente, tamanho, estação do ano e cor do produto.
+
+JSON para Testes em PrevisaoProdutoController
+
+{
+  "nomeProduto": "string",
+  "categoria": "Jaquetas",
+  "preco": 292,
+  "sexoCliente": "F",
+  "tamanho": "42",
+  "estacaoAno": "Inverno",
+  "corProduto": "Marrom"
+}
+
+---
+
+## Práticas de Clean Code
+
+O projeto segue princípios de Clean Code para garantir legibilidade, manutenção e qualidade de código. Algumas práticas adotadas incluem:
+
+- Naming Conventions: Todos os métodos, variáveis e classes seguem convenções de nomenclatura claras, que indicam sua funcionalidade.
+- Tratamento de Erros: O código captura exceções específicas e retorna respostas apropriadas ao cliente, como NotFound e BadRequest.
+- Separação de Preocupações: A funcionalidade de geração de token JWT é isolada em TokenService, respeitando o princípio de separação de responsabilidades.
+- Injeção de Dependência: A API utiliza injeção de dependência para o contexto do banco de dados (AppDbContext) e para o serviço de geração de tokens (TokenService), facilitando o teste e a manutenção do código.
+- Responsabilidade Única: Cada classe e método possui uma única responsabilidade. Por exemplo, o ProdutosController gerencia operações CRUD e PrevisaoProdutoController cuida das previsões de produtos.
+- Os endpoints responsáveis pelas operações CRUD (Create, Read, Update e Delete) serão implementados seguindo essa arquitetura monolítica. Isso implica que todas as operações relativas aos recursos da API, como a criação de novos registros, leitura, atualização e remoção de dados, estarão centralizadas no mesmo núcleo da aplicação, permitindo uma gestão unificada e simplificada dos dados e funcionalidades.
+
 
 ---
 ## Como executar a API
@@ -90,6 +108,34 @@ Serão implementados testes para garantir a funcionalidade da API:
 
 ## Endpoints CRUD
 
+- **PrevisaoProdutoController**
+  Controller responsável por prever o nome de um produto com base nas características informadas.
+
+  - **POST**
+ 
+    ![image](https://github.com/user-attachments/assets/d8334c81-6794-4efd-8569-1b92e5663c2a)
+
+
+
+
+- **TokenService**
+  AuthController e AuthService para implementação de serviço de autenticação.
+
+    Acesso: Username == "usuario".
+    Login.Password == "senha123".
+
+
+    ![image](https://github.com/user-attachments/assets/872eede0-6860-44ce-ba16-935a03e1728f)
+
+    ![image](https://github.com/user-attachments/assets/d563b39b-c06d-44f0-8c21-7bf5d0dd1ae9)
+
+    ![image](https://github.com/user-attachments/assets/58d0e0dd-fc97-4841-91c5-d6b1080e1f2f)
+
+
+
+    
+
+  
 Os endpoints da API seguem o padrão **CRUD** (Create, Read, Update, Delete) para os recursos:
 
 - **Clientes**
