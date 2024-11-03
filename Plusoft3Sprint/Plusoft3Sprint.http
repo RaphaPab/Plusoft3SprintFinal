@@ -1,0 +1,6 @@
+@Plusoft3Sprint_HostAddress = http://localhost:5062
+
+GET {{Plusoft3Sprint_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
