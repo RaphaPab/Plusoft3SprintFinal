@@ -49,9 +49,11 @@ Optamos pelo uso do padrão JSON (JavaScript Object Notation) no desenvolvimento
 
 ## Funcionalidade de IA Generativa
 
-#Detalhes do Modelo de IA
+# Detalhes do Modelo de IA
 
 O projeto utiliza o Microsoft ML.NET para treinar um modelo de classificação multi-classe, que prevê o nome do produto para recomendação de uso com base em características, como categoria, preço, sexo do cliente, tamanho, estação do ano e cor do produto.
+A ideia é usar IA generativa para analisar esses dados e gerar uma previsão para o nome do produto. Isso é particularmente útil em contextos de e-commerce ou catálogos, onde o nome do produto pode impactar diretamente a atração do cliente. Com base no comportamento e preferências do usuário, a IA pode sugerir produtos similares ou complementares. Isso é feito ao identificar padrões de preferências de clientes e encontrar produtos correlatos.
+O uso de Machine Learning aplicado a produtos oferece uma plataforma poderosa para transformar dados em valor agregado para o negócio.
 
 JSON para Testes em PrevisaoProdutoController
 
@@ -89,7 +91,7 @@ O projeto segue princípios de Clean Code para garantir legibilidade, manutenç�
 **Passos para Execução**
   1. Clone o repositório:
 
-    git clone https://github.com/RaphaPab/Plusoft3Sprint
+    git clone https://github.com/RaphaPab/Plusoft3SprintFinal
      
   3. Configure as variáveis de ambiente com as credenciais de acesso ao banco Oracle.
 
