@@ -8,17 +8,18 @@
 - Eduardo Reis Braga rm551987
 - Vinícius Martins Torres Abdala rm99455
 
-## Implementação da API
+
 # Tecnologias Utilizadas:
+
+## Implementação da API
 - ASP.NET Core Web API: Framework de desenvolvimento.
 - Banco de dados Oracle: Para operações CRUD (Create, Read, Update, Delete).
 - Swagger/OpenAPI: Documentação interativa dos endpoints.
 - Padrão de Criação: Usaremos o JSON para o gerenciador de configurações.
 - Autenticação JWT: Token.
 
-# Arquitetura da API
+## Arquitetura da API
 
-## Descrição
 
 Este repositório contém uma API RESTful construída em ASP.NET Core, que gerencia dados de produtos e oferece uma funcionalidade de previsão baseada em Machine Learning para recomendar o nome de um produto, com base em suas características. A aplicação utiliza o Entity Framework Core para persistência de dados e uma camada de segurança baseada em JWT para autenticação de usuários.
 
