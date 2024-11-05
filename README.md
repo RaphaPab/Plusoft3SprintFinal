@@ -18,6 +18,10 @@
 - Padrão de Criação: Usaremos o JSON para o gerenciador de configurações.
 - Autenticação JWT: Token.
 
+## Arquitetura utilizada
+
+A arquitetura monolítica é um estilo de desenvolvimento de software em que todos os componentes e funcionalidades de uma aplicação estão unificados em um único bloco ou sistema. Em uma aplicação monolítica, o front-end, o back-end, o gerenciamento de dados e a lógica de negócios são integrados em um único código-fonte e executados juntos. Essa abordagem facilita o desenvolvimento inicial, pois os componentes podem compartilhar recursos diretamente, o que simplifica a comunicação interna. No entanto, à medida que a aplicação cresce em complexidade e tamanho, a manutenção e escalabilidade tornam-se desafiadoras. Qualquer alteração, por menor que seja, exige a recompilação e o redeployment da aplicação inteira, o que aumenta o tempo de atualização e a complexidade de testes. A arquitetura monolítica é eficaz para projetos de menor porte, mas muitas vezes limita a agilidade e escalabilidade em sistemas grandes, o que leva muitas organizações a optar por arquiteturas baseadas em microsserviços para suportar sistemas mais complexos e distribuídos.
+
 ## Arquitetura da API
 
 
